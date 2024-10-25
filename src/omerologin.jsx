@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const OmeroLoginWithCSRFAndCookies = () => {
+const Omerologin = () => {
   const [serverId, setServerId] = useState('');  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -109,4 +109,4 @@ const OmeroLoginWithCSRFAndCookies = () => {
   );
 };
 
-export default OmeroLoginWithCSRFAndCookies;
+export default Omerologin;
