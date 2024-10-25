@@ -10,5 +10,3 @@ function App() {
 }
 
 export default App;
-
-// https://cerviai-omero.duckdns.org/webclient/login/?url=%2Fwebclient%2F

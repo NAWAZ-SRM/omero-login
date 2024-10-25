@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const OmeroLoginWithCSRFAndCookies = () => {
-  const [serverId, setServerId] = useState('');   // New state for server ID
+  const [serverId, setServerId] = useState('');  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [serverUrl, setServerUrl] = useState('');  // OMERO server URL
-  const [csrfToken, setCsrfToken] = useState('');  // CSRF token
+  const [serverUrl, setServerUrl] = useState('');  
+  const [csrfToken, setCsrfToken] = useState('');  
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  // Step 1: Fetch CSRF token from the server
+  
   const fetchCsrfToken = async () => {
     try {
       const response = await axios.get(`${serverUrl}/api/v0/token/`, {
-        withCredentials: true, // Ensures cookies are included in the request
+        withCredentials: true, 
       });
 
       const csrfTokenFromResponse = response.headers['x-csrf-token'] || response.data.csrfToken;
@@ -25,7 +25,7 @@ const OmeroLoginWithCSRFAndCookies = () => {
     }
   };
 
-  // Step 2: Log in with server ID, username, password, and CSRF token
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -33,14 +33,14 @@ const OmeroLoginWithCSRFAndCookies = () => {
       const response = await axios.post(
         `${serverUrl}/api/v0/token/`,
         {
-          server: serverId,           // Include server ID
+          server: serverId,          
           username,
           password,
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-Token': csrfToken,  // Include CSRF token in the headers
+            'X-CSRF-Token': csrfToken,  
           },
           withCredentials: true,
         }
@@ -57,12 +57,12 @@ const OmeroLoginWithCSRFAndCookies = () => {
     <div>
       <h2>Login to OMERO with CSRF Protection and Cookies</h2>
 
-      {/* Step 1: Fetch CSRF token */}
+      
       <button onClick={fetchCsrfToken}>Fetch CSRF Token</button>
 
       {csrfToken && <p>CSRF Token: {csrfToken}</p>}
 
-      {/* Step 2: Login form */}
+      
       <form onSubmit={handleLogin}>
         <div>
           <label>Server URL: </label>
@@ -74,7 +74,7 @@ const OmeroLoginWithCSRFAndCookies = () => {
           />
         </div>
         <div>
-          <label>Server ID: </label>  {/* New input for server ID */}
+          <label>Server ID: </label>  
           <input
             type="text"
             value={serverId}
